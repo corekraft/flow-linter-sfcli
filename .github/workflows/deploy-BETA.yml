@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: 22.x
           registry-url: https://registry.npmjs.org
-          scope: rubenhalman
+          scope: corekraft
       - name: Semantic Release Dependency
         run: npm install -g @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/git @semantic-release/npm conventional-changelog-conventionalcommits semantic-release
       - name: Install Dependencies

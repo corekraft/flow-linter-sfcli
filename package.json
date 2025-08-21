@@ -1,7 +1,6 @@
 {
-  "name": "lightning-flow-scanner",
-  "version": "3.29.0",
-  "bugs": "https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-sfdx/issues",
+  "name": "@corekraft/flow-linter",
+  "version": "1.0.0",
   "dependencies": {
     "@oclif/core": "^4.5.2",
     "@salesforce/core": "^8.18.7",
@@ -10,7 +9,7 @@
     "cosmiconfig": "^9.0.0",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.3",
-    "lightning-flow-scanner-core": "4.51.0"
+    "@corekraft/flow-linter-core": "1.0.0"
   },
   "devDependencies": {
     "@oclif/plugin-help": "6.2.32",
@@ -47,9 +46,13 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-sfdx/",
+  "homepage": "https://github.com/corekraft/flow-linter",
   "keywords": [
-    "sfdx-plugin"
+    "sfdx-plugin",
+    "sfcli-plugin",
+    "sf-plugin",
+    "sf plugin",
+    "sf cli plugin"
   ],
   "license": "AGPL-3.0",
   "oclif": {
@@ -64,7 +67,10 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-sfdx.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corekraft/flow-linter-sfcli.git"
+  },
   "scripts": {
     "prestart": "npm run prepack",
     "start": "ts-node bin/run",
@@ -76,7 +82,17 @@
     "pretest": "npm run prepack",
     "test:unit": "mocha -r ts-node/register test/**/*.test.ts",
     "version": "oclif readme && git add README.md",
-    "lfs:link": "npm link lightning-flow-scanner-core && npm pack && sf plugins link"
+    "lfs:link": "npm link flow-linter-core && npm pack && sf plugins link"
   },
-  "type": "module"
+  "type": "module",
+  "description": "`flow-linter` brings the same rigor of linting and static code analysis—familiar to developers working with JavaScript or Apex—to Salesforce Flows.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/corekraft/flow-linter-sfcli/issues"
+  }
 }

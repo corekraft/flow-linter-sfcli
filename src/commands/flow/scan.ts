@@ -12,13 +12,13 @@ import pkg, {
   ScanResult,
   RuleResult,
   ResultDetails,
-} from "lightning-flow-scanner-core";
+} from "@corekraft/flow-linter-core";
 import { inspect } from "util";
 const { parse: parseFlows, scan: scanFlows } = pkg;
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 
-const messages = Messages.loadMessages("lightning-flow-scanner", "command");
+const messages = Messages.loadMessages("@corekraft/flow-linter", "command");
 
 export default class Scan extends SfCommand<Output> {
   public static description = messages.getMessage("commandDescription");
@@ -181,7 +181,7 @@ export default class Scan extends SfCommand<Output> {
     this.log(
       chalk.italic(
         chalk.blueBright(
-          chalk.underline("https://github.com/Lightning-Flow-Scanner"),
+          chalk.underline("https://github.com/corekraft/flow-linter-sfcli"),
         ),
       ),
     );
