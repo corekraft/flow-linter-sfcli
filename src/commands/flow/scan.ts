@@ -23,15 +23,16 @@ const messages = Messages.loadMessages("@corekraft/flow-linter", "command");
 export default class Scan extends SfCommand<Output> {
   public static description = messages.getMessage("commandDescription");
   public static examples: string[] = [
-    "sf flow scan",
-    "sf flow scan --failon warning",
-    "sf flow scan -c path/to/config.json",
-    "sf flow scan -c path/to/config.json --json",
-    "sf flow scan -c path/to/config.json --failon warning",
-    "sf flow scan -d path/to/flows/directory",
-    "sf flow scan --files path/to/single/file.flow-meta.xml path/to/another/file.flow-meta.xml",
-    "sf flow scan -p path/to/single/file.flow-meta.xml path/to/another/file.flow-meta.xml",
+    "sf flow lint",
+    "sf flow lint --failon warning",
+    "sf flow lint -c path/to/config.json",
+    "sf flow lint -c path/to/config.json --json",
+    "sf flow lint -c path/to/config.json --failon warning",
+    "sf flow lint -d path/to/flows/directory",
+    "sf flow lint --files path/to/single/file.flow-meta.xml path/to/another/file.flow-meta.xml",
+    "sf flow lint -p path/to/single/file.flow-meta.xml path/to/another/file.flow-meta.xml",
   ];
+  public static aliases: string[] = ["flow lint"];
 
   protected static requiresUsername = false;
   protected static supportsDevhubUsername = false;
@@ -86,7 +87,7 @@ export default class Scan extends SfCommand<Output> {
   public async run(): Promise<Output> {
     const { flags } = await this.parse(Scan);
     this.failOn = flags.failon || "error";
-    this.spinner.start("Loading Lightning Flow Scanner");
+    this.spinner.start("Loading Flow Linter");
     this.userConfig = await loadScannerOptions(flags.config);
     if (flags.targetusername) {
       await this.retrieveFlowsFromOrg(flags.targetusername);
