@@ -2,11 +2,11 @@ Find and fix problems on your salesforce flow on your sf cli
 
 # Quick start
 
-```
+```sh
 echo y | sf plugins install @corekraft/flow-linter
 ```
 
-```
+```sh
 sf flow lint
 ```
 
@@ -36,7 +36,7 @@ sf flow lint
 
 ### Options
 
-```sh-session
+```sh
   -c, --config <path>                                               provide a path to the configuration file.
 
   -f, --failon                                                      provide a threshold level for returning status 1
@@ -55,15 +55,15 @@ sf flow lint
 
 You can test the scanner by simply opening an existing project that contains flows and running the scan without any configurations or parameters. This way all the default rules are autmatically included in the scan. 
 
-```sh-sessions
+```sh
 sfdx flow:scan
 ```
 
-```sh-sessions
+```sh
 sfdx flow:scan --json
 ```
 
-```sh-sessions
+```sh
 sfdx flow:scan --config path/to/.flow-scanner.json
 ```
 
