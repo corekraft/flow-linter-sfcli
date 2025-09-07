@@ -102,6 +102,7 @@ export default class Scan extends SfCommand<Output> {
     const parsedFlows: ParsedFlow[] = await parseFlows(flowFiles);
     this.debug(`parsed flows ${parsedFlows.length}`, ...parsedFlows);
 
+    this.enforceSecurityGuards();
     const tryScan = (): [ScanResult[], error: Error] => {
       try {
         const scanResult =
@@ -241,6 +242,23 @@ export default class Scan extends SfCommand<Output> {
       }
     }
     return status;
+  }
+
+    private enforceSecurityGuards(): void {
+    // 🔒 Monkey-patch Function constructor
+    (globalThis as any).Function = function (): never {
+      throw new Error("Blocked use of Function constructor in lightning-flow-scanner-core");
+    };
+
+    // 🔒 Intercept dynamic import() calls
+    const dynamicImport = (globalThis as any).import;
+    (globalThis as any).import = async (...args: any[]): Promise<any> => {
+      const specifier = args[0];
+      if (typeof specifier === "string" && specifier.startsWith("http")) {
+        throw new Error(`Blocked remote import: ${specifier}`);
+      }
+      return dynamicImport(...args);
+    };
   }
 
   private buildResults(scanResults) {
