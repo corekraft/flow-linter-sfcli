@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "npm start -- flow:scan -d /Users/jun/Development/github/lightning-flow-scanner-example-flows --config /Users/jun/Development/github/lightning-flow-scanner-example-flows/.flow-scanner.yml",
+      "command": "npm start -- flow:scan -d . --config ./.flow-scanner.yml",
       "name": "Run npm start",
       "request": "launch",
       "type": "node-terminal",

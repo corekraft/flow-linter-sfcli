@@ -48,7 +48,7 @@ export default class FlowFix extends SfCommand<ScanResult> {
       );
     }
 
-    this.spinner.start("Loading Lightning Flow Scanner", null, {
+    this.spinner.start("Loading Flow Linter", null, {
       stdout: true,
     });
 

@@ -1,9 +1,14 @@
-[![Lightning Flow Scanner Banner](docs/images/banner.png)](https://github.com/Lightning-Flow-Scanner)
-__*Pinpoint deviations from Industry Best Practices in Salesforce Flows, ensuring standards of business automation excellence*__
+Find and fix problems on your salesforce flow on your sf cli
 
-![FlowScan example](docs/images/sfdxgif.gif)
+# Quick start
 
-**Also available as [VS Code Extension](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce)*
+```
+echo y | sf plugins install @corekraft/flow-linter
+```
+
+```
+sf flow lint
+```
 
 ## Table of contents
 
@@ -19,26 +24,15 @@ __*Pinpoint deviations from Industry Best Practices in Salesforce Flows, ensurin
 - [Development Setup](#development-setup)
 
 ## Installation
-
-Install with SFDX:
-
-```sh-session
-sfdx plugins:install lightning-flow-scanner
 ```
-
-Install with NPM:
-
-```sh-session
-npm install -g lightning-flow-scanner
+sf plugins install @corekraft/flow-linter
 ```
 
 ## Usage
 
-```sh-session
-sfdx flow:scan [options]
+```bash
+sf flow lint
 ```
-
-***To learn more about the default rules and options, see the [core documentation](https://lightning-flow-scanner.github.io/lightning-flow-scanner-core/).***
 
 ### Options
 
@@ -151,9 +145,9 @@ Some rules have additional attributes to configure, such as the expression, that
 }
 ```
 
-### Loading Custom Rules
+### Loading Custom Rules (Re-architecture in-progress)
 
-To load custom rules using the Lightning Flow Scanner Core, you can utilize the `path` attribute within the rules section of your configurations. This attribute allows you to specify the path to your custom rule class, enabling seamless integration of organization-specific rule definitions into the scanner's ruleset. 
+To load custom rules using Flow Linter Core you can utilize the `path` attribute within the rules section of your configurations. This attribute allows you to specify the path to your custom rule class, enabling seamless integration of organization-specific rule definitions into the scanner's ruleset. 
 
 ```json
 {
@@ -165,21 +159,21 @@ To load custom rules using the Lightning Flow Scanner Core, you can utilize the 
 }
 ```
 Custom Rules can either leverage our Flow compiler or be completely customized typescript functions.
-For more details and examples on custom rules, refer to our [Custom Rule Creation Guide](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-core/tree/master/docs/customruleguide.md)
+For more details and examples on custom rules, refer to our [Custom Rule Creation Guide](https://github.com/corekraft/flow-linter-core/tree/master/docs/customruleguide.md)
 
 ## Development Setup
 
 ### Preparing for Changes
 
-1. **Clone Project**: Clone the Lightning Flow Scanner SFDX plugin project from the repository.
+1. **Clone Project**: Clone the flow linter sfcli plugin project from the repository.
 2. **Install Dependencies**: Open the directory and run `npm install` or `yarn install` in the terminal to install the necessary dependencies.
-3. **Optional: Make changes**: For example, if you want to upgrade the core module using npm, you can use the  command: `npm update lightning-flow-scanner-core`
+3. **Optional: Make changes**: For example, if you want to upgrade the core module using npm, you can use the  command: `npm update @corekraft/flow-linter-core`
 4. **Prepack**: Execute `npm run prepack` to build the plugin locally and prepare for packaging.
 5. **Link Plugin**: Link the plugin to your Salesforce DX environment using `sfdx plugins link .`.
 
 ### Debugging the Plugin
 
-1. **Linking Core Module**: You may need to clone and link the `lightning-flow-scanner-core` locally to your project. This step is necessary if you're making changes to the core module and want those changes reflected in the plugin. You can link the core module by navigating to its directory and running:
+1. **Linking Core Module**: You may need to clone and link the `@corekraft/flow-linter-core` locally to your project. This step is necessary if you're making changes to the core module and want those changes reflected in the plugin. You can link the core module by navigating to its directory and running:
 
 ```bash
 npm link
@@ -188,13 +182,13 @@ npm link
 Then, navigate to the sfdx plugin directory and run:
 
 ```bash
-npm link lightning-flow-scanner-core
+npm link @corekraft/flow-linter-core
 ```
 
 1. **Run Plugin**: In the terminal of your example flow project (or any other project intended for scanning), run the following command to start the plugin with debugging enabled:
 
 ```bash
-NODE_OPTIONS=--inspect-brk /path/to/lightning-flow-scanner-sfdx/bin/run flow:scan
+NODE_OPTIONS=--inspect-brk /path/to/flow-linter-sfcli/bin/run flow:lint
 ```
 
 2. **Attach Debugger**: Open your local Salesforce DX project in Visual Studio Code, set desired breakpoints, and attach the debugger to the remote session.
